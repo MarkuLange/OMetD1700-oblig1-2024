@@ -1,4 +1,5 @@
 "use strict"
+/* DOM-ELEMENTS */
 const buyBtn = document.getElementById("buy")
 const resetBtn = document.getElementById("reset")
 const billetter = document.querySelector(".billetter")
@@ -9,6 +10,7 @@ const etternavn = document.getElementById("etternavn")
 const telefonnr = document.getElementById("telefonnr")
 const epost = document.getElementById("epost")
 
+/* REGEX INFO, AND INITIALIZERS */
 const info = [
     {el: filmValg, regex: /^[\w-]+$/},
     {el: antall, regex: /^[0-9]{1,2}$/},
@@ -20,6 +22,7 @@ const info = [
 const ticketArr = [];
 let valid = true;
 
+/* MAIN CODE */
 class Person {
     #fName;
     #lName;
@@ -85,6 +88,7 @@ const displayError = function (el){
     }
 }
 
+/* EVENT LISTENERS */
 buyBtn.addEventListener("click", function (e){
     e.preventDefault();
     buyTickets();
