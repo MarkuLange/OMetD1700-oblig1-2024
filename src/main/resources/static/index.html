@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kinobiletter</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="script/main.js"></script>
+</head>
+<body>
+    <h1>Bestilling av kinobilletter</h1>
+    <form id="order">
+        <label for="film">Velg film:</label>
+        <select name="film" id="film">
+            <option value="placeholder" disabled selected hidden="hidden">Velg film her</option>
+            <option value="cars">Cars</option>
+            <option value="nemo">Nemo</option>
+            <option value="avatar">Avatar</option>
+            <option value="ringenes-herre">Ringenes Herre</option>
+        </select>
+        <br>
+        <label class="antall" for="antall">Antall:</label>
+        <input type="number" name="antall" id="antall" min="1" max="99" placeholder="0">
+        <br>
+        <label for="fornavn">Fornavn:</label>
+        <input type="text" name="fornavn" id="fornavn" placeholder="Navn">
+        <br>
+        <label for="etternavn">Etternavn:</label>
+        <input type="text" name="etternavn" id="etternavn" placeholder="Navnesen">
+        <br>
+        <label for="telefonnr">Telefonnr:</label>
+        <input type="tel" name="telefonnr" id="telefonnr" minlength="8" maxlength="8" placeholder="12345678">
+        <br>
+        <label for="epost">Epost:</label>
+        <input type="email" name="epost" id="epost" placeholder="n_navnesen@mail.no">
+        <br>
+        <button type="submit" id="buy">Kjøp billett</button>
+    </form>
+
+    <h2>Alle billetter</h2>
+        <ul class="billetter">
+        </ul>
+    <button type="reset" id="reset">Slett alle billettene</button>
+</body>
+</html>
