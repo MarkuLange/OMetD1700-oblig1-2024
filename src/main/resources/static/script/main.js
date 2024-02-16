@@ -26,20 +26,27 @@ class Person {
     #eMail;
     #tlfNr;
     constructor(fName, lName, eMail, tlfNr) {
-       this.#fName = fName;
-       this.#lName = lName;
-       this.#eMail = eMail;
+       this.#fName = fName.charAt(0).toUpperCase() + lName.slice(1).toLowerCase();
+       this.#lName = lName.charAt(0).toUpperCase() + lName.slice(1).toLowerCase();
+       this.#eMail = eMail.toLowerCase();
        this.#tlfNr = tlfNr;
+    }
+
+    get fullName() {
+        return `${this.#fName} ${this.#lName}`
+    }
+
+    get tlfNr() {
+        return this.#tlfNr;
+    }
+
+    get eMail() {
+        return this.#eMail;
     }
 }
 const checkValid = function (input){
     const str = input.el.value;
-    if (!str || str==="placeholder" || !input.regex.test(str)) {
-        return false
-    }
-    else {
-        return true
-    }
+    return !(!str || str === "placeholder" || !input.regex.test(str));
 }
 
 const buyTickets = function () {
@@ -55,17 +62,27 @@ const buyTickets = function () {
     if(valid) {
         const ticket = {
             customer: new Person(fornavn.value, etternavn.value, epost.value, telefonnr.value),
-            movie: filmValg.value,
+            movie: filmValg.value.charAt(0).toUpperCase() + filmValg.value.slice(1),
             amount: antall.value
         }
-        ticketArr.push(ticket)
-        billetter.insertAdjacentHTML("afterbegin", `<li>${ticket.movie}: [${ticket.amount}]</li>`)
+        ticketArr.push(ticket);
+        showTicket(ticket);
         document.getElementById("order").reset();
     }
 }
 
+const showTicket = function (ticket) {
+    console.log(ticket)
+    billetter.insertAdjacentHTML("afterbegin", `<li>${ticket.movie}: [${ticket.amount}] -
+${ticket.customer.fullName} | ${ticket.customer.tlfNr} | ${ticket.customer.eMail} </li>`)
+}
+
 const displayError = function (el){
-    el.insertAdjacentHTML("afterend", `<span class="error"> Vennligst skriv inn gyldig ${el.name}</span>`);
+    if(el.id === "film" || el.id === "antall") {
+        el.insertAdjacentHTML("afterend", `<span class="error"> Vennligst velg ${el.name}</span>`);
+    } else {
+        el.insertAdjacentHTML("afterend", `<span class="error"> Vennligst skriv inn gyldig ${el.name}</span>`);
+    }
 }
 
 buyBtn.addEventListener("click", function (e){
@@ -73,6 +90,7 @@ buyBtn.addEventListener("click", function (e){
     buyTickets();
 })
 resetBtn.addEventListener("click", function (){
+    document.getElementById("order").reset();
     ticketArr.length = 0;
     billetter.innerHTML="";
 })
