@@ -29,7 +29,7 @@ class Person {
     #eMail;
     #tlfNr;
     constructor(fName, lName, eMail, tlfNr) {
-       this.#fName = fName.charAt(0).toUpperCase() + lName.slice(1).toLowerCase();
+       this.#fName = fName.charAt(0).toUpperCase() + fName.slice(1).toLowerCase();
        this.#lName = lName.charAt(0).toUpperCase() + lName.slice(1).toLowerCase();
        this.#eMail = eMail.toLowerCase();
        this.#tlfNr = tlfNr;
